@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://d34xmexqgdpl2"]
+
+[ext_resource type="Texture2D" uid="uid://88fuv3gjyrsf" path="res://Assets/ui/UIbg.png" id="1_2sywc"]
+[ext_resource type="Script" uid="uid://bvrg8bq7ill4o" path="res://Scenes/GameOverUI/game_over_ui.gd" id="1_8sgns"]
+[ext_resource type="LabelSettings" uid="uid://cabe8bkqohhyq" path="res://Resources/green_72.tres" id="2_8sgns"]
+[ext_resource type="LabelSettings" uid="uid://e30to2uje84w" path="res://Resources/gray_24.tres" id="3_754m5"]
+
+[node name="GameOverUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -3.0
+offset_right = 8.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8sgns")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -180.0
+offset_right = 256.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2sywc")
+patch_margin_top = 10
+patch_margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "YOU WIN"
+label_settings = ExtResource("2_8sgns")
+
+[node name="MovesLabel" type="Label" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "asdfsadfsdfsda"
+label_settings = ExtResource("3_754m5")
+horizontal_alignment = 1
+vertical_alignment = 1

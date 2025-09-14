@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c80n4cmxsny0p"]
+[gd_scene load_steps=7 format=3 uid="uid://c80n4cmxsny0p"]
 
 [ext_resource type="LabelSettings" uid="uid://e30to2uje84w" path="res://Resources/gray_24.tres" id="1_g12vh"]
+[ext_resource type="Script" uid="uid://dku85c3ish7l" path="res://Scenes/GameScreen/game.gd" id="1_pdm2q"]
 [ext_resource type="LabelSettings" uid="uid://cbjyttr5cdvx7" path="res://Resources/white_24.tres" id="1_rtkut"]
 [ext_resource type="Texture2D" uid="uid://cfhwhak1cjkcw" path="res://Assets/ui/blue_button00.png" id="2_x256l"]
 [ext_resource type="Texture2D" uid="uid://bxxj0ap36x2c2" path="res://Assets/ui/green_button00.png" id="3_g12vh"]
+[ext_resource type="PackedScene" uid="uid://d34xmexqgdpl2" path="res://Scenes/GameOverUI/game_over_ui.tscn" id="6_bug26"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -12,8 +14,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_pdm2q")
+
+[node name="GameOverUI" parent="." instance=ExtResource("6_bug26")]
+visible = false
+layout_mode = 1
 
 [node name="HB" type="HBoxContainer" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="HB"]
+[node name="TileGrid" type="GridContainer" parent="HB"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -63,7 +71,7 @@ label_settings = ExtResource("1_g12vh")
 
 [node name="PairsLabel" type="Label" parent="HB/MC/VB/HB2"]
 layout_mode = 2
-text = "00"
+text = "0/0"
 label_settings = ExtResource("1_g12vh")
 
 [node name="Control" type="Control" parent="HB/MC/VB"]
@@ -71,6 +79,7 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
 [node name="ExitButton" type="TextureButton" parent="HB/MC/VB"]
+z_index = 1
 layout_mode = 2
 texture_normal = ExtResource("2_x256l")
 texture_pressed = ExtResource("3_g12vh")
@@ -86,3 +95,10 @@ text = "EXIT"
 label_settings = ExtResource("1_rtkut")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="RevealTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="pressed" from="HB/MC/VB/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="timeout" from="RevealTimer" to="." method="_on_reveal_timer_timeout"]

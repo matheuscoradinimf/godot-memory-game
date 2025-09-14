@@ -12,4 +12,5 @@ func _ready() -> void:
 		label.text = "%dx%d" % [ls.get_rows(), ls.get_cols()]
 
 func _on_pressed() -> void:
-	pass # Replace with function body.
+	print("level button pressed", level	)
+	SignalHub.on_level_selected.emit(level)

@@ -25,9 +25,11 @@ texture = ExtResource("2_vq23j")
 expand_mode = 1
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0
 
 [node name="Main" parent="." instance=ExtResource("3_vq23j")]
 layout_mode = 1
 
 [node name="Game" parent="." instance=ExtResource("4_f3hoe")]
+visible = false
 layout_mode = 1
